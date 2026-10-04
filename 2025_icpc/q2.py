@@ -1,58 +1,38 @@
-'''
-t =int(input())
-for i in range(t):
-    n,d = map(int,input().split())
-    arr = list(map(int,input().split()))
-    arr.sort()
-    
-    # res1=[]
-    # res2=[]
-    # for i in range(n):
-    #     if i % 2==0:
-    #         res1.append(arr[i])
-    #     else:
-    #         res2.append(arr[i])
-    # res = res1 + res2[::-1]
-    # print(res)
-
-    max_diff =0
-    sec_max=0
-    dif_arr=[]
-    for i in range(1,n):
-        diff=arr[i]-arr[i-1]
-        if diff>=max_diff:
-            sec_max = max_diff
-            max_diff=diff 
-    #print(max_diff,sec_max)           
-    if max_diff >d:
-        if n%2==1:
-            if sec_max<=d:
-                print("YES")
-                continue
-        print("NO")
-        continue
-    else:
-        print("YES")
-'''
 t = int(input())
 ans=[]
-for _ in range(t):
-    n, d = map(int, input().split())
-    arr = sorted(map(int, input().split()))
 
-    bad = 0
-
-    for i in range(1, n):
-        if arr[i] - arr[i - 1] > d:
-            bad += 1
-
-    #print("YES" if bad <= 1 else "NO")
-    if bad<=1:
-        ans.append("YES")
+for i in range(t):
+    n,k = map(int,input().split())
+    arr = list(map(int,input().split()))
+    cur=0
+    #cont = -1
+    if k==0:
+        ans.append(1)
+        break
+    # for j in range(n):
+    j=0
+    while j<n-1 :
+        if arr[j]==arr[j+1]:
+            #k=j+1
+            while j<n and arr[j] == arr[j+1] :
+                j+=1
+            #print("j : ",j)
+        else:
+            cur+=1
+            j+=1
+    if arr[n-1]!=arr[n-2]:
+        cur+=1
+    if cur>1:
+        ans.append(cur)
     else:
-        ans.append("NO")
+        ans.append(1)
 for i in ans:
     print(i)
-
-
+    
+            
         
+            
+
+
+
+
